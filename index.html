@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <style>
+        body {
+            background-color: rgba(132, 241, 214, 0.979);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        fieldset {
+            border-style: solid;
+        }
+
+    </style>
+</head>
+
+<body>
+    
+    <h1>Students</h1>
+   <fieldset>
+    <legend>GET Students info</legend>
+    <label >Index number:</label>
+    <input type="text" id="index">
+    <button onclick="getStudent();">Get</button>
+    <p id="text"></p>
+   </fieldset>
+   <script type="text/javascript">
+    function getStudent() {
+        let index = document.getElementById("index").value;
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            document.getElementById("text").innerHTML = this.responseText;
+        }
+        xhr.open("GET", "http://127.0.0.1:8080/?index=" + index, true);
+        xhr.send();
+    }
+    </script>
+
+   <br>
+   <br>
+   <br>
+   <br>
+
+   <fieldset>
+    <legend>POST Student info</legend>
+    <label>Index number:</label>
+    <input type="text" id="index2">
+    <label>Name:</label>
+    <input type="text" id="name">
+    <label>Last name:</label>
+    <input type="text" id="last_name">
+    <label>Avg score:</label>
+    <input type="text" id="average_score">
+    <button onclick="postStudent();">Post</button>
+    <p id="text2"></p>
+   </fieldset>
+   <script type="text/javascript">
+    function postStudent() {
+        let index = document.getElementById("index2").value;
+        let name = document.getElementById("name").value;
+        let surname = document.getElementById("last_name").value;
+        let score = document.getElementById("average_score").value;
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            document.getElementById("text2").innerHTML = this.responseText;
+        }
+        xhr.open("POST", "http://127.0.0.1:8080/?index="+index+"&name="+name+"&last_name="+surname+"&average_score="+score, true);
+        xhr.send();
+    }
+    </script>
+
+
+</body>
+
+</html>
